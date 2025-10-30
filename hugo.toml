@@ -1,7 +1,7 @@
 baseURL = "http://gohugo.io/"
 title = "Chicago 7 Example"
 languageCode = "en-us"
-theme = 'themes/chicago7'
+theme = 'chicago7'
 
 [permalinks]
 posts = "/posts/:year:month:day"
