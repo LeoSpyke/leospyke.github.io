@@ -8,7 +8,7 @@ posts = "/posts/:year:month:day-:slug"
 
 [markup]
 [markup.highlight]
-style = "base16-snazzy" #bw
+style = "bw"
 
 [menu]
 #[[menu.header]]
@@ -34,6 +34,7 @@ weight = 10
 [params]
 # Optional. The relative path to the site logo file within the `assets/` folder
 logo = "logo.svg"
+colorScheme = "light"
 
 # Web site author for copyrighting
 author = "LeoSpyke"
