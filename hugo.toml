@@ -4,7 +4,7 @@ languageCode = "en-us"
 theme = 'chicago7'
 
 [permalinks]
-posts = "/posts/:year:month:day"
+posts = "/posts/:year:month:day-:slug"
 
 [markup]
 [markup.highlight]
@@ -21,10 +21,10 @@ name = "Posts"
 url = "posts"
 weight = 30
 
-[[menu.header]]
-name = "Projects"
-url = "projects"
-weight = 20
+#[[menu.header]]
+#name = "Projects"
+#url = "projects"
+#weight = 20
 
 [[menu.header]]
 name = "Home"
