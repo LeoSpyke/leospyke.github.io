@@ -11,10 +11,10 @@ posts = "/posts/:year:month:day-:slug"
 style = "bw"
 
 [menu]
-[[menu.header]]
-name = "About"
-url = "about"
-weight = 40
+#[[menu.header]]
+#name = "About"
+#url = "about"
+#weight = 40
 
 [[menu.header]]
 name = "Posts"
