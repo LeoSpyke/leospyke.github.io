@@ -2,13 +2,25 @@
 other = "Home"
 
 [posts]
-other = "Articoli"
+other = "Post"
 
 [services]
 other = "Servizi"
 
 [links_heading]
 other = "// LINKS"
+
+[services_cta_kicker]
+other = "// SOVRANITÀ DIGITALE & CLOUD"
+
+[services_cta_title]
+other = "La tecnologia, alle tue condizioni."
+
+[services_cta_description]
+other = "Strumenti aperti, configurazioni attente alla privacy e infrastrutture solide, dai dispositivi personali al cloud."
+
+[services_cta_link]
+other = "Scopri i servizi"
 
 [language]
 other = "Lingua"
@@ -28,23 +40,47 @@ other = "QR code di invito al server SimpleX"
 [simplex_setup]
 other = "Imposta il percorso del QR in hugo.toml."
 
+[simplex_mobile]
+other = "Scansiona il QR"
+
+[simplex_mobile_setup]
+other = "QR in configurazione"
+
+[simplex_e2e]
+other = "Messaggi cifrati end-to-end"
+
+[telegram_mobile]
+other = "QR o messaggio"
+
+[telegram_mobile_link]
+other = "Apri Telegram"
+
+[telegram_mobile_setup]
+other = "Contatto in configurazione"
+
+[social_github_short]
+other = "Codice e progetti"
+
+[social_rss_short]
+other = "Nuovi post"
+
 [latest_posts]
-other = "// ULTIMI ARTICOLI"
+other = "// ULTIMI POST"
 
 [all_posts]
-other = "tutti gli articoli ->"
+other = "tutti i post ->"
 
 [no_posts]
-other = "Nessun articolo pubblicato."
+other = "Nessun post pubblicato."
 
 [archive]
-other = "// ARCHIVIO"
+other = "// POST"
 
 [read_post]
-other = "leggi l'articolo ->"
+other = "leggi il post ->"
 
 [post]
-other = "// ARTICOLO"
+other = "// POST"
 
 [by]
 other = "di"
@@ -53,7 +89,7 @@ other = "di"
 other = "Tag"
 
 [back_posts]
-other = "<- torna agli articoli"
+other = "<- torna ai post"
 
 [choose_palette]
 other = "Scegli la palette colori"
@@ -67,8 +103,8 @@ other = "Verde"
 [amber]
 other = "Ambra"
 
-[cyan]
-other = "Ciano"
+[light]
+other = "Chiaro"
 
 [mono]
 other = "Bianco/nero"
@@ -76,11 +112,41 @@ other = "Bianco/nero"
 [system_online]
 other = "SISTEMA ONLINE"
 
-[curiosity]
-other = "costruito con curiosità_"
+[made_prefix]
+other = "made with 💚"
+
+[made_open_source]
+other = "from open source"
+
+[made_freedom]
+other = "for freedom"
+
+[made_privacy]
+other = "for privacy"
+
+[made_sovereignty]
+other = "for digital sovereignty"
+
+[made_open_web]
+other = "for an open web"
+
+[telegram_qr_alt]
+other = "QR code per aprire il contatto Telegram"
+
+[telegram_cta]
+other = "Scrivimi su Telegram"
+
+[telegram_setup]
+other = "Imposta il tuo link Telegram in hugo.toml."
+
+[service_dialog_close]
+other = "Chiudi"
+
+[service_more]
+other = "Scopri come posso aiutarti"
 
 [rss_handle]
-other = "Segui i nuovi articoli"
+other = "Segui i nuovi post"
 
 [pinned]
 other = "In evidenza"
@@ -100,11 +166,17 @@ other = "Nessuna piattaforma configurata. Aggiungi i monitor pubblici e i relati
 [live_status]
 other = "STATO LIVE"
 
-[consulting_heading]
-other = "// CONSULENZA"
+[cloud_heading]
+other = "// CLOUD & DEVOPS"
 
-[consulting_intro]
-other = "Supporto pratico, implementazione e troubleshooting per infrastrutture e progetti."
+[cloud_intro]
+other = "Infrastruttura cloud e pipeline di delivery, dall'architettura ai deployment ripetibili."
+
+[sovereignty_heading]
+other = "// SOVRANITÀ DIGITALE"
+
+[sovereignty_intro]
+other = "Riprendi il controllo della tua vita digitale: meno dipendenza dalle Big Tech, meno profilazione e sorveglianza, anche da parte di governi o malintenzionati. Ti aiuto a scegliere e configurare strumenti open source; Proxmox e GrapheneOS sono esempi concreti."
 
 [consulting_proxmox_title]
 other = "Proxmox"
@@ -112,17 +184,44 @@ other = "Proxmox"
 [consulting_proxmox_description]
 other = "Virtualizzazione, cluster, storage, networking, strategie di backup e installazioni per homelab o piccole aziende."
 
+[consulting_proxmox_detail]
+other = "Progetto e configuro host Proxmox, macchine virtuali e container, storage e reti. Ti aiuto a pianificare backup e ripristino, migrare servizi e gestire l'ambiente in autonomia, dal homelab a una piccola infrastruttura aziendale."
+
 [consulting_aws_title]
 other = "AWS"
 
 [consulting_aws_description]
-other = "Architetture cloud, automazione dell'infrastruttura, deployment, sicurezza di base e ottimizzazione dei costi."
+other = "Architetture AWS e infrastruttura come codice, metodologie DevOps con GitLab, pipeline CI/CD, automazione dei deployment, sicurezza e ottimizzazione dei costi."
+
+[consulting_aws_detail]
+other = "Dalla progettazione AWS alla messa in produzione: infrastruttura come codice, repository e pipeline GitLab CI/CD, test e deployment automatizzati. Rivediamo accessi, segreti, sicurezza di base e costi per rendere le release ripetibili e manutenibili."
 
 [consulting_ai_title]
 other = "AI e automazione"
 
 [consulting_ai_description]
 other = "Integrazioni pratiche di AI, modelli locali, automazione dei flussi e connessione degli LLM a strumenti reali."
+
+[consulting_ai_detail]
+other = "Valuto insieme a te se e dove l'AI è utile, poi integro modelli locali o servizi AI nei flussi di lavoro. Posso aiutare con automazioni, assistenti basati sui tuoi dati e collegamenti a strumenti esistenti, tenendo conto di privacy, costi e limiti."
+
+[consulting_grapheneos_title]
+other = "GrapheneOS"
+
+[consulting_grapheneos_description]
+other = "Configurazione del dispositivo, impostazioni di privacy e sicurezza, scelta di app e servizi, backup e supporto all'uso quotidiano."
+
+[consulting_grapheneos_detail]
+other = "Ti accompagno nella scelta di un dispositivo compatibile, installazione e configurazione iniziale. Impostiamo profili, permessi, aggiornamenti, backup e app in base alle tue esigenze, con indicazioni pratiche per l'uso quotidiano e i compromessi di compatibilità."
+
+[consulting_open_source_title]
+other = "Ecosistema open source"
+
+[consulting_open_source_description]
+other = "Valutazione e adozione di alternative open source per le esigenze digitali quotidiane, con piano di migrazione, configurazione e supporto pratico. Guarda le piattaforme ospitate qui sotto come esempi concreti."
+
+[consulting_open_source_detail]
+other = "Partiamo dagli strumenti che usi e da ciò che vuoi proteggere. Individuiamo alternative open source pratiche, pianifichiamo migrazione e gestione dei dati, configuriamo gli strumenti e ti mostro come usarli e mantenerli. Le piattaforme hosted qui sotto sono esempi concreti."
 
 [status_checking]
 other = "CONTROLLO"

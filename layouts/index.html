@@ -8,7 +8,7 @@
         {{ range .Site.Params.social }}
           <a class="social-link" href="{{ if hasPrefix .url "/" }}{{ .url | relLangURL }}{{ else }}{{ .url }}{{ end }}"{{ if hasPrefix .url "http" }} target="_blank" rel="me noopener noreferrer"{{ end }}>
             {{ partial "social-icon.html" .icon }}
-            <span><span class="social-name">{{ .name }}</span><span class="social-handle">{{ if eq .icon "rss" }}{{ i18n "rss_handle" }}{{ else }}{{ .handle }}{{ end }}</span></span>
+            <span><span class="social-name">{{ .name }}</span><span class="social-handle">{{ if eq .icon "rss" }}{{ i18n "rss_handle" }}{{ else }}{{ .handle }}{{ end }}</span><span class="social-mobile-label">{{ i18n .shortKey }}</span></span>
           </a>
         {{ end }}
       </div>
@@ -19,16 +19,47 @@
         <h2 id="simplex-title">// SIMPLEX</h2>
       </div>
       {{ with .Site.Params.simplexQR }}
-        <a class="qr-link" href="{{ . | relURL }}" aria-label="Apri il QR code SimpleX">
+        <a class="qr-link" href="{{ . | relURL }}" aria-label="{{ i18n "simplex_alt" }}">
           <img class="qr-image" src="{{ . | relURL }}" alt="{{ i18n "simplex_alt" }}">
         </a>
-        <p class="qr-caption">{{ $.Site.Params.simplexLabel }}</p>
       {{ else }}
         <div class="qr-placeholder" aria-hidden="true">▦</div>
-        <p class="qr-caption">{{ .Site.Params.simplexLabel }}<br>{{ i18n "simplex_setup" }}</p>
       {{ end }}
+      <p class="qr-caption">{{ if .Site.Params.simplexQR }}{{ .Site.Params.simplexLabel }}{{ else }}{{ i18n "simplex_setup" }}{{ end }}</p>
+      <span class="contact-mobile-caption">{{ if .Site.Params.simplexQR }}{{ i18n "simplex_mobile" }}{{ else }}{{ i18n "simplex_mobile_setup" }}{{ end }}</span>
+      <span class="e2e-note"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3 7h10v8H3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="10.5" r=".8" fill="currentColor"/></svg>{{ i18n "simplex_e2e" }}</span>
+    </section>
+
+    <section class="panel telegram-panel" aria-labelledby="telegram-title">
+      <div class="section-heading"><h2 id="telegram-title">// TELEGRAM</h2></div>
+      {{ if .Site.Params.telegramQR }}
+        {{ if .Site.Params.telegramURL }}<a class="contact-qr-link" href="{{ .Site.Params.telegramURL }}" target="_blank" rel="me noopener noreferrer">{{ end }}
+          <img class="qr-image contact-qr" src="{{ .Site.Params.telegramQR | relURL }}" alt="{{ i18n "telegram_qr_alt" }}">
+        {{ if .Site.Params.telegramURL }}</a>{{ end }}
+        <p class="qr-caption">{{ i18n "telegram_cta" }}</p>
+      {{ else }}
+        {{ if .Site.Params.telegramURL }}
+          <a class="telegram-link" href="{{ .Site.Params.telegramURL }}" target="_blank" rel="me noopener noreferrer">
+            {{ partial "social-icon.html" "telegram" }}
+            <span>{{ i18n "telegram_cta" }} <span aria-hidden="true">-&gt;</span></span>
+          </a>
+        {{ else }}
+          <div class="contact-qr-placeholder" aria-hidden="true">{{ partial "social-icon.html" "telegram" }}</div>
+          <p class="qr-caption">{{ i18n "telegram_setup" }}</p>
+        {{ end }}
+      {{ end }}
+      <span class="contact-mobile-caption">{{ if .Site.Params.telegramQR }}{{ i18n "telegram_mobile" }}{{ else if .Site.Params.telegramURL }}{{ i18n "telegram_mobile_link" }}{{ else }}{{ i18n "telegram_mobile_setup" }}{{ end }}</span>
     </section>
   </div>
+
+  <a class="panel services-cta" href="{{ "services/" | relLangURL }}">
+    <span class="services-cta-copy">
+      <span class="services-cta-kicker">{{ i18n "services_cta_kicker" }}</span>
+      <strong>{{ i18n "services_cta_title" }}</strong>
+      <span class="services-cta-description">{{ i18n "services_cta_description" }}</span>
+    </span>
+    <span class="services-cta-link">{{ i18n "services_cta_link" }} <span aria-hidden="true">-&gt;</span></span>
+  </a>
 
   <section class="latest-posts" id="posts" aria-labelledby="posts-title">
     <div class="section-heading">

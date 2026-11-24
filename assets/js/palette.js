@@ -4,6 +4,7 @@ const paletteToggle = document.querySelector(".palette-toggle");
 const windowStatus = document.querySelector(".window-status");
 const statusText = document.querySelector(".status-text");
 const servicesPage = document.querySelector("[data-services-page]");
+const serviceDialog = document.querySelector(".service-dialog");
 const numberReveal = document.querySelector(".number-reveal");
 const digitCloud = document.querySelector(".digit-cloud");
 const digitContext = digitCloud.getContext("2d");
@@ -17,7 +18,7 @@ const numberCount = 1200;
 const paletteAccents = {
   green: "#b7f28b",
   amber: "#f2b84b",
-  cyan: "#6de4e8",
+  light: "#e87524",
   mono: "#fff",
 };
 const numbers = Array.from({ length: numberCount }, () => ({
@@ -84,6 +85,47 @@ document.addEventListener("keydown", (event) => {
 });
 
 setPalette(document.documentElement.dataset.theme || "green", false);
+
+const footerMessage = document.querySelector("[data-footer-message]");
+if (footerMessage) {
+  const choices = JSON.parse(footerMessage.dataset.messageChoices);
+  footerMessage.textContent = choices[Math.floor(Math.random() * choices.length)];
+}
+
+if (serviceDialog) {
+  const dialogTitle = serviceDialog.querySelector("[data-service-title]");
+  const dialogDescription = serviceDialog.querySelector("[data-service-description]");
+  let lastServiceTrigger;
+
+  document.querySelectorAll("[data-service-trigger]").forEach((trigger) => {
+    const openServiceDialog = () => {
+      lastServiceTrigger = trigger;
+      dialogTitle.textContent = trigger.dataset.serviceTitle;
+      dialogDescription.textContent = trigger.dataset.serviceDetail;
+      serviceDialog.showModal();
+    };
+
+    trigger.addEventListener("click", openServiceDialog);
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openServiceDialog();
+      }
+    });
+  });
+
+  serviceDialog.querySelectorAll("[data-service-close]").forEach((button) => {
+    button.addEventListener("click", () => serviceDialog.close());
+  });
+
+  serviceDialog.addEventListener("click", (event) => {
+    const bounds = serviceDialog.getBoundingClientRect();
+    const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+    if (outside) serviceDialog.close();
+  });
+
+  serviceDialog.addEventListener("close", () => lastServiceTrigger?.focus());
+}
 
 async function typeStatusMessage(message, speed = 75) {
   statusText.textContent = "";

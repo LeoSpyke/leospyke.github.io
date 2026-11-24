@@ -1,4 +1,4 @@
 +++
-title = "Posts"
-description = "Notes, projects, and things worth sharing."
+title = "Post"
+description = "Appunti, progetti e cose da condividere."
 +++

@@ -10,6 +10,18 @@ other = "Services"
 [links_heading]
 other = "// LINKS"
 
+[services_cta_kicker]
+other = "// DIGITAL SOVEREIGNTY & CLOUD"
+
+[services_cta_title]
+other = "Technology on your terms."
+
+[services_cta_description]
+other = "Open tools, privacy-respecting setups, and solid infrastructure, from personal devices to cloud deployments."
+
+[services_cta_link]
+other = "Explore services"
+
 [language]
 other = "Language"
 
@@ -33,6 +45,30 @@ other = "SimpleX server invitation QR code"
 
 [simplex_setup]
 other = "Add the QR image path in hugo.toml."
+
+[simplex_mobile]
+other = "Scan the QR"
+
+[simplex_mobile_setup]
+other = "QR not configured"
+
+[simplex_e2e]
+other = "End-to-end encrypted messaging"
+
+[telegram_mobile]
+other = "QR or message"
+
+[telegram_mobile_link]
+other = "Open Telegram"
+
+[telegram_mobile_setup]
+other = "Contact not configured"
+
+[social_github_short]
+other = "Code and projects"
+
+[social_rss_short]
+other = "New posts"
 
 [latest_posts]
 other = "// LATEST POSTS"
@@ -73,8 +109,8 @@ other = "Green"
 [amber]
 other = "Amber"
 
-[cyan]
-other = "Cyan"
+[light]
+other = "Light"
 
 [mono]
 other = "Black/white"
@@ -82,8 +118,38 @@ other = "Black/white"
 [system_online]
 other = "SYSTEM ONLINE"
 
-[curiosity]
-other = "built with curiosity_"
+[made_prefix]
+other = "made with 💚"
+
+[made_open_source]
+other = "from open source"
+
+[made_freedom]
+other = "for freedom"
+
+[made_privacy]
+other = "for privacy"
+
+[made_sovereignty]
+other = "for digital sovereignty"
+
+[made_open_web]
+other = "for an open web"
+
+[telegram_qr_alt]
+other = "QR code to open the Telegram contact"
+
+[telegram_cta]
+other = "Message me on Telegram"
+
+[telegram_setup]
+other = "Set your Telegram link in hugo.toml."
+
+[service_dialog_close]
+other = "Close"
+
+[service_more]
+other = "See how I can help"
 
 [services_kicker]
 other = "// PLATFORMS & CONSULTING"
@@ -100,11 +166,17 @@ other = "No hosted platforms configured yet. Add public monitors and their displ
 [live_status]
 other = "LIVE STATUS"
 
-[consulting_heading]
-other = "// CONSULTING"
+[cloud_heading]
+other = "// CLOUD & DEVOPS"
 
-[consulting_intro]
-other = "Practical guidance, implementation, and troubleshooting for your infrastructure and projects."
+[cloud_intro]
+other = "Cloud infrastructure and delivery pipelines, from architecture to repeatable deployments."
+
+[sovereignty_heading]
+other = "// DIGITAL SOVEREIGNTY"
+
+[sovereignty_intro]
+other = "Take back control of your digital life: less dependence on Big Tech, less profiling and surveillance, including by governments or malicious actors. I help you choose and configure open-source tools; Proxmox and GrapheneOS are practical examples."
 
 [consulting_proxmox_title]
 other = "Proxmox"
@@ -112,17 +184,44 @@ other = "Proxmox"
 [consulting_proxmox_description]
 other = "Virtualization, clusters, storage, networking, backup strategy, and homelab or small-business deployments."
 
+[consulting_proxmox_detail]
+other = "I design and configure Proxmox hosts, virtual machines and containers, storage, and networking. Get help planning backups and recovery, migrating services, and managing the environment independently, from a homelab to a small business setup."
+
 [consulting_aws_title]
 other = "AWS"
 
 [consulting_aws_description]
-other = "Cloud architecture, infrastructure automation, deployment, security fundamentals, and cost optimization."
+other = "AWS architecture and infrastructure as code, with GitLab DevOps workflows, CI/CD pipelines, deployment automation, security fundamentals, and cost optimization."
+
+[consulting_aws_detail]
+other = "From AWS architecture to production: infrastructure as code, GitLab repositories and CI/CD pipelines, automated testing and deployments. Review access, secrets, baseline security, and costs to make releases repeatable and maintainable."
 
 [consulting_ai_title]
 other = "AI & automation"
 
 [consulting_ai_description]
 other = "Practical AI integrations, local models, workflow automation, and connecting language models to real tools."
+
+[consulting_ai_detail]
+other = "Identify where AI is useful, then integrate local models or AI services into existing workflows. This can include automation, assistants grounded in your data, and connections to existing tools, while considering privacy, cost, and limitations."
+
+[consulting_grapheneos_title]
+other = "GrapheneOS"
+
+[consulting_grapheneos_description]
+other = "Device setup, privacy and security configuration, app and service choices, backups, and everyday usage guidance."
+
+[consulting_grapheneos_detail]
+other = "Get help choosing a compatible device and completing installation and initial setup. Configure profiles, permissions, updates, backups, and apps for your needs, with practical everyday guidance and clear compatibility trade-offs."
+
+[consulting_open_source_title]
+other = "Open-source ecosystem"
+
+[consulting_open_source_description]
+other = "Assessing and adopting open-source alternatives for everyday digital needs, with migration planning, setup, and hands-on guidance. See the hosted platforms below for practical examples."
+
+[consulting_open_source_detail]
+other = "Start with the tools you use and what you want to protect. Identify practical open-source alternatives, plan migration and data ownership, configure the tools, and learn how to use and maintain them. The hosted platforms below are practical examples."
 
 [status_checking]
 other = "CHECKING"

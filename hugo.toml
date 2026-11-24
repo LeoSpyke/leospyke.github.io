@@ -1,6 +1,6 @@
 baseURL = "https://leospyke.dev/"
 title = "LeoSpyke's home"
-defaultContentLanguage = "en"
+defaultContentLanguage = "it"
 defaultContentLanguageInSubdir = false
 disableKinds = ["taxonomy", "term"]
 
@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term"]
 locale = "en-US"
 label = "English"
 title = "LeoSpyke's home"
-weight = 1
+weight = 2
 
 [languages.en.params]
 tagline = "A personal space for notes, projects, and connections."
@@ -18,7 +18,7 @@ simplexLabel = "QR code to join the SimpleX server"
 locale = "it-IT"
 label = "Italiano"
 title = "Lo spazio di LeoSpyke"
-weight = 2
+weight = 1
 
 [languages.it.params]
 tagline = "Uno spazio personale per appunti, progetti e connessioni."
@@ -38,31 +38,46 @@ dir = ":cacheDir/images"
 [params]
 author = "LeoSpyke"
 simplexQR = ""
+telegramQR = ""
 uptimeKumaURL = ""
 uptimeKumaSlug = "default"
+telegramURL = ""
+# Set telegramURL to your public Telegram profile or channel link.
 
-# Add social links as repeated params.social entries. Put a QR image in static/ and
-# set simplexQR to its site path, for example "/images/simplex.png".
+# Put QR images in static/ and set simplexQR/telegramQR to site paths, for example "/images/simplex.png".
 [[params.social]]
 name = "GitHub"
 handle = "@LeoSpyke"
+shortKey = "social_github_short"
 url = "https://github.com/LeoSpyke"
 icon = "github"
 
 [[params.social]]
 name = "RSS"
 handle = "RSS feed"
+shortKey = "social_rss_short"
 url = "/index.xml"
 icon = "rss"
 
 [[params.consulting]]
+key = "open_source"
+category = "sovereignty"
+
+[[params.consulting]]
 key = "proxmox"
+category = "sovereignty"
+
+[[params.consulting]]
+key = "grapheneos"
+category = "sovereignty"
 
 [[params.consulting]]
 key = "aws"
+category = "cloud"
 
 [[params.consulting]]
 key = "ai"
+category = "cloud"
 
 # Add public hosted services here; monitor must match the public Uptime Kuma monitor name.
 # uptimeKumaURL should point to a read-only reverse proxy for the two public status-page APIs,

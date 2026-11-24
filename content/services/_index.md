@@ -1,4 +1,4 @@
 +++
-title = "Services"
-description = "Hosted platforms and consulting services."
+title = "Servizi"
+description = "Piattaforme hosted e servizi di consulenza."
 +++

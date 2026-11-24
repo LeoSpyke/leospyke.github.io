@@ -1,8 +1,8 @@
 +++
 title = "Home"
-description = "A personal space for notes, projects, and connections."
+description = "Uno spazio personale per appunti, progetti e connessioni."
 date = "2025-10-30"
 author = "LeoSpyke"
 +++
 
-Welcome to my corner of the internet.
+Benvenuto nel mio angolo di internet.
