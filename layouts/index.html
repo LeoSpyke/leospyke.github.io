@@ -1,0 +1,53 @@
+{{ define "main" }}
+  <div class="eyebrow">{{ i18n "home_kicker" }}</div>
+
+  <div class="content-grid">
+    <section class="panel social-panel" id="social" aria-labelledby="social-title">
+      <div class="section-heading">
+        <h2 id="social-title">{{ i18n "links_heading" }}</h2>
+        <span>{{ len .Site.Params.social }} {{ i18n "profiles" }}</span>
+      </div>
+      <div class="social-list">
+        {{ range .Site.Params.social }}
+          <a class="social-link" href="{{ if hasPrefix .url "/" }}{{ .url | relLangURL }}{{ else }}{{ .url }}{{ end }}"{{ if hasPrefix .url "http" }} target="_blank" rel="me noopener noreferrer"{{ end }}>
+            {{ partial "social-icon.html" .icon }}
+            <span><span class="social-name">{{ .name }}</span><span class="social-handle">{{ if eq .icon "rss" }}{{ i18n "rss_handle" }}{{ else }}{{ .handle }}{{ end }}</span></span>
+          </a>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="panel simplex-panel" aria-labelledby="simplex-title">
+      <div class="section-heading">
+        <h2 id="simplex-title">// SIMPLEX</h2>
+        <span>{{ i18n "server" }}</span>
+      </div>
+      {{ with .Site.Params.simplexQR }}
+        <a class="qr-link" href="{{ . | relURL }}" aria-label="Apri il QR code SimpleX">
+          <img class="qr-image" src="{{ . | relURL }}" alt="{{ i18n "simplex_alt" }}">
+        </a>
+        <p class="qr-caption">{{ $.Site.Params.simplexLabel }}</p>
+      {{ else }}
+        <div class="qr-placeholder" aria-hidden="true">▦</div>
+        <p class="qr-caption">{{ .Site.Params.simplexLabel }}<br>{{ i18n "simplex_setup" }}</p>
+      {{ end }}
+    </section>
+  </div>
+
+  <section class="latest-posts" id="posts" aria-labelledby="posts-title">
+    <div class="section-heading">
+      <h2 id="posts-title">{{ i18n "latest_posts" }}</h2>
+      <a class="text-link" href="{{ "posts/" | relLangURL }}">{{ i18n "all_posts" }}</a>
+    </div>
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
+    {{ range first 3 ($posts.ByDate.Reverse) }}
+      <a class="panel post-row" href="{{ .RelPermalink }}">
+        <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+        <span class="post-title">{{ .Title }}</span>
+        <span class="posts-arrow" aria-hidden="true">-&gt;</span>
+      </a>
+    {{ else }}
+      <p class="empty-state"><span class="prompt">&gt;</span> {{ i18n "no_posts" }}</p>
+    {{ end }}
+  </section>
+{{ end }}

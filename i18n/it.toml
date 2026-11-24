@@ -1,0 +1,80 @@
+[home]
+other = "Home"
+
+[posts]
+other = "Articoli"
+
+[links_heading]
+other = "// LINKS"
+
+[language]
+other = "Lingua"
+
+[navigation]
+other = "Navigazione principale"
+
+[profiles]
+other = "profili"
+
+[home_kicker]
+other = "// HOME"
+
+[server]
+other = "server"
+
+[simplex_alt]
+other = "QR code di invito al server SimpleX"
+
+[simplex_setup]
+other = "Imposta il percorso del QR in hugo.toml."
+
+[latest_posts]
+other = "// ULTIMI ARTICOLI"
+
+[all_posts]
+other = "tutti gli articoli ->"
+
+[no_posts]
+other = "Nessun articolo pubblicato."
+
+[archive]
+other = "// ARCHIVIO"
+
+[read_post]
+other = "leggi l'articolo ->"
+
+[post]
+other = "// ARTICOLO"
+
+[by]
+other = "di"
+
+[tags]
+other = "Tag"
+
+[back_posts]
+other = "<- torna agli articoli"
+
+[choose_palette]
+other = "Scegli la palette colori"
+
+[palette]
+other = "PALETTE"
+
+[green]
+other = "Verde"
+
+[amber]
+other = "Ambra"
+
+[cyan]
+other = "Ciano"
+
+[system_online]
+other = "SISTEMA ONLINE"
+
+[curiosity]
+other = "costruito con curiosità_"
+
+[rss_handle]
+other = "Segui i nuovi articoli"

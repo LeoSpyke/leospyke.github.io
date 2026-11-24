@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <article class="article">
+    <div class="eyebrow">{{ i18n "post" }}</div>
+    <h1>{{ .Title }}</h1>
+    <div class="article-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      {{ with .Params.author }}<span>{{ i18n "by" }} {{ . }}</span>{{ end }}
+    </div>
+    {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
+    <div class="article-body">{{ .Content }}</div>
+    {{ with .Params.tags }}
+      <ul class="tag-list" aria-label="{{ i18n "tags" }}">
+        {{ range . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    {{ end }}
+    <a class="back-link" href="{{ "posts/" | relLangURL }}">{{ i18n "back_posts" }}</a>
+  </article>
+{{ end }}

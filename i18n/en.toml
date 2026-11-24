@@ -1,0 +1,80 @@
+[home]
+other = "Home"
+
+[posts]
+other = "Posts"
+
+[links_heading]
+other = "// LINKS"
+
+[language]
+other = "Language"
+
+[navigation]
+other = "Main navigation"
+
+[profiles]
+other = "profiles"
+
+[rss_handle]
+other = "Follow new posts"
+
+[home_kicker]
+other = "// HOME"
+
+[server]
+other = "server"
+
+[simplex_alt]
+other = "SimpleX server invitation QR code"
+
+[simplex_setup]
+other = "Add the QR image path in hugo.toml."
+
+[latest_posts]
+other = "// LATEST POSTS"
+
+[all_posts]
+other = "all posts ->"
+
+[no_posts]
+other = "No posts published yet."
+
+[archive]
+other = "// ARCHIVE"
+
+[read_post]
+other = "read post ->"
+
+[post]
+other = "// POST"
+
+[by]
+other = "by"
+
+[tags]
+other = "Tags"
+
+[back_posts]
+other = "<- back to posts"
+
+[choose_palette]
+other = "Choose color palette"
+
+[palette]
+other = "PALETTE"
+
+[green]
+other = "Green"
+
+[amber]
+other = "Amber"
+
+[cyan]
+other = "Cyan"
+
+[system_online]
+other = "SYSTEM ONLINE"
+
+[curiosity]
+other = "built with curiosity_"

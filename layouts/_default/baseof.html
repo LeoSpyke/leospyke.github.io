@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0f0e">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="{{ .Description | default .Site.Params.tagline }}">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | relLangURL }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  {{ $styles := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+  <script>
+    (() => {
+      try {
+        const palette = localStorage.getItem("leospyke-palette");
+        if (["green", "amber", "cyan"].includes(palette)) document.documentElement.dataset.theme = palette;
+      } catch (_) {}
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="window-top" aria-hidden="true">
+      <div class="window-dots"><i></i><i></i><i></i></div>
+      <span class="window-path">{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}</span>
+      <span class="window-status"><i class="status-dot"></i>{{ i18n "system_online" }}</span>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} - {{ i18n "home" }}">
+        <span class="brand-mark">&gt;_</span>
+        <span class="brand-name">{{ .Site.Params.author | upper }}</span>
+      </a>
+      <div class="header-tools">
+        <nav class="site-nav" aria-label="{{ i18n "navigation" }}">
+          <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ i18n "home" | lower }}</a>
+          <a href="{{ "posts/" | relLangURL }}"{{ if eq .Section "posts" }} aria-current="page"{{ end }}>{{ i18n "posts" | lower }}</a>
+        </nav>
+        <nav class="language-switch" aria-label="{{ i18n "language" }}">
+          {{ range .AllTranslations }}
+            <a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}" hreflang="{{ .Language.Lang }}"{{ if eq .Language.Lang $.Site.Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Lang | upper }}</a>
+          {{ end }}
+        </nav>
+      </div>
+    </header>
+    <main class="content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer class="site-footer">
+      <span>&copy; {{ now.Year }} {{ .Site.Params.author }}</span>
+      <div class="footer-tools">
+        <span class="curiosity">{{ i18n "curiosity" }}</span>
+        <div class="palette-widget">
+          <button class="palette-toggle" type="button" aria-label="{{ i18n "choose_palette" }}" aria-expanded="false" aria-controls="palette-menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.1a2.4 2.4 0 0 0 1.8-4c-.4-.45-.65-.9-.65-1.4 0-.9.7-1.6 1.6-1.6H18a3 3 0 0 0 3-3c0-4.42-4.03-8-9-8Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7.5" r="1"/><circle cx="14" cy="7.5" r="1"/><circle cx="17" cy="10.5" r="1"/></svg>
+          </button>
+          <div class="palette-menu" id="palette-menu" role="group" aria-label="{{ i18n "choose_palette" }}" aria-hidden="true">
+            <span class="palette-label">{{ i18n "palette" }}</span>
+            <button class="palette-button" type="button" data-palette-choice="green" aria-pressed="true"><span class="swatch" style="--swatch:#b7f28b"></span>{{ i18n "green" }}</button>
+            <button class="palette-button" type="button" data-palette-choice="amber" aria-pressed="false"><span class="swatch" style="--swatch:#f2b84b"></span>{{ i18n "amber" }}</button>
+            <button class="palette-button" type="button" data-palette-choice="cyan" aria-pressed="false"><span class="swatch" style="--swatch:#6de4e8"></span>{{ i18n "cyan" }}</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div class="number-reveal" aria-hidden="true">
+    <canvas class="digit-cloud"></canvas>
+  </div>
+  {{ $script := resources.Get "js/palette.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
+</body>
+</html>

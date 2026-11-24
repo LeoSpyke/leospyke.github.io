@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <div class="eyebrow">{{ i18n "archive" }}</div>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="intro">{{ . }}</p>{{ end }}
+  <div class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <article class="panel post-card">
+        <div class="post-date">{{ .Date.Format "2006-01-02" }}</div>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description }}<p>{{ . }}</p>{{ else }}<p>{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
+        <a class="text-link" href="{{ .RelPermalink }}">{{ i18n "read_post" }}</a>
+      </article>
+    {{ else }}
+      <p class="empty-state"><span class="prompt">&gt;</span> {{ i18n "no_posts" }}</p>
+    {{ end }}
+  </div>
+{{ end }}

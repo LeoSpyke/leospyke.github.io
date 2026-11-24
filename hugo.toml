@@ -1,7 +1,28 @@
 baseURL = "https://leospyke.dev/"
 title = "LeoSpyke's home"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+disableKinds = ["taxonomy", "term"]
+
+[languages.en]
 languageCode = "en-us"
-theme = 'chicago7'
+languageName = "English"
+title = "LeoSpyke's home"
+weight = 1
+
+[languages.en.params]
+tagline = "A personal space for notes, projects, and connections."
+simplexLabel = "QR code to join the SimpleX server"
+
+[languages.it]
+languageCode = "it-it"
+languageName = "Italiano"
+title = "Lo spazio di LeoSpyke"
+weight = 2
+
+[languages.it.params]
+tagline = "Uno spazio personale per appunti, progetti e connessioni."
+simplexLabel = "QR code per entrare nel server SimpleX"
 
 [permalinks]
 posts = "/posts/:year:month:day-:slug"
@@ -10,37 +31,24 @@ posts = "/posts/:year:month:day-:slug"
 [markup.highlight]
 style = "bw"
 
-[menu]
-#[[menu.header]]
-#name = "About"
-#url = "about"
-#weight = 40
-
-[[menu.header]]
-name = "Posts"
-url = "posts"
-weight = 30
-
-#[[menu.header]]
-#name = "Projects"
-#url = "projects"
-#weight = 20
-
-[[menu.header]]
-name = "Home"
-url = "/"
-weight = 10
+[caches]
+[caches.images]
+dir = ":cacheDir/images"
 
 [params]
-# Optional. The relative path to the site logo file within the `assets/` folder
-logo = "logo.svg"
-colorScheme = "light"
-
-# Web site author for copyrighting
 author = "LeoSpyke"
+simplexQR = ""
 
-[params.social]
-twitter = "https://x.com/example"
-behance = "https://behance.net/yourprofile"
-facebook = "https://facebook.com/yourprofile"
-feed = "/index.xml"
+# Add social links as repeated params.social entries. Put a QR image in static/ and
+# set simplexQR to its site path, for example "/images/simplex.png".
+[[params.social]]
+name = "GitHub"
+handle = "@LeoSpyke"
+url = "https://github.com/LeoSpyke"
+icon = "github"
+
+[[params.social]]
+name = "RSS"
+handle = "RSS feed"
+url = "/index.xml"
+icon = "rss"

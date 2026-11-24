@@ -1,8 +1,8 @@
 +++
 title = "Home"
-description = "LeoSpyke's Website"
+description = "A personal space for notes, projects, and connections."
 date = "2025-10-30"
-author = "Me"
+author = "LeoSpyke"
 +++
 
-Home page
+Welcome to my corner of the internet.
