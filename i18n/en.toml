@@ -4,6 +4,9 @@ other = "Home"
 [posts]
 other = "Posts"
 
+[services]
+other = "Services"
+
 [links_heading]
 other = "// LINKS"
 
@@ -81,3 +84,69 @@ other = "SYSTEM ONLINE"
 
 [curiosity]
 other = "built with curiosity_"
+
+[services_kicker]
+other = "// PLATFORMS & CONSULTING"
+
+[platforms_heading]
+other = "// HOSTED PLATFORMS"
+
+[platforms_intro]
+other = "Self-hosted services, with live availability from the public Uptime Kuma status page."
+
+[platforms_empty]
+other = "No hosted platforms configured yet. Add public monitors and their display details in hugo.toml."
+
+[live_status]
+other = "LIVE STATUS"
+
+[consulting_heading]
+other = "// CONSULTING"
+
+[consulting_intro]
+other = "Practical guidance, implementation, and troubleshooting for your infrastructure and projects."
+
+[consulting_proxmox_title]
+other = "Proxmox"
+
+[consulting_proxmox_description]
+other = "Virtualization, clusters, storage, networking, backup strategy, and homelab or small-business deployments."
+
+[consulting_aws_title]
+other = "AWS"
+
+[consulting_aws_description]
+other = "Cloud architecture, infrastructure automation, deployment, security fundamentals, and cost optimization."
+
+[consulting_ai_title]
+other = "AI & automation"
+
+[consulting_ai_description]
+other = "Practical AI integrations, local models, workflow automation, and connecting language models to real tools."
+
+[status_checking]
+other = "CHECKING"
+
+[status_up]
+other = "OPERATIONAL"
+
+[status_down]
+other = "OFFLINE"
+
+[status_pending]
+other = "PENDING"
+
+[status_maintenance]
+other = "MAINTENANCE"
+
+[status_unavailable]
+other = "UNAVAILABLE"
+
+[status_not_configured]
+other = "NOT CONFIGURED"
+
+[uptime_24h]
+other = "24h uptime"
+
+[visit_platform]
+other = "Visit"

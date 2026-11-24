@@ -38,6 +38,8 @@ dir = ":cacheDir/images"
 [params]
 author = "LeoSpyke"
 simplexQR = ""
+uptimeKumaURL = ""
+uptimeKumaSlug = "default"
 
 # Add social links as repeated params.social entries. Put a QR image in static/ and
 # set simplexQR to its site path, for example "/images/simplex.png".
@@ -52,3 +54,21 @@ name = "RSS"
 handle = "RSS feed"
 url = "/index.xml"
 icon = "rss"
+
+[[params.consulting]]
+key = "proxmox"
+
+[[params.consulting]]
+key = "aws"
+
+[[params.consulting]]
+key = "ai"
+
+# Add public hosted services here; monitor must match the public Uptime Kuma monitor name.
+# uptimeKumaURL should point to a read-only reverse proxy for the two public status-page APIs,
+# with CORS restricted to https://leospyke.dev. No Uptime Kuma API key is needed.
+# [[params.platforms]]
+# name = "Pastebin"
+# monitor = "Pastebin"
+# descriptionKey = "platform_pastebin"
+# url = "https://paste.example.com"

@@ -1,0 +1,42 @@
+{{ define "main" }}
+  <div class="eyebrow">{{ i18n "services_kicker" }}</div>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="intro">{{ . }}</p>{{ end }}
+
+  <div class="services-page" data-services-page data-kuma-url="{{ .Site.Params.uptimeKumaURL }}" data-kuma-slug="{{ .Site.Params.uptimeKumaSlug | default "default" }}" data-status-up="{{ i18n "status_up" }}" data-status-down="{{ i18n "status_down" }}" data-status-pending="{{ i18n "status_pending" }}" data-status-maintenance="{{ i18n "status_maintenance" }}" data-status-unavailable="{{ i18n "status_unavailable" }}" data-status-not-configured="{{ i18n "status_not_configured" }}" data-uptime-label="{{ i18n "uptime_24h" }}">
+    <section class="service-section" aria-labelledby="platforms-title">
+      <div class="section-heading">
+        <h2 id="platforms-title">{{ i18n "platforms_heading" }}</h2>
+        <span>{{ i18n "live_status" }}</span>
+      </div>
+      <p class="service-intro">{{ i18n "platforms_intro" }}</p>
+      <div class="service-grid">
+        {{ range .Site.Params.platforms }}
+          <article class="panel service-card" data-platform-card data-monitor="{{ .monitor }}" data-uptime-label="{{ i18n "uptime_24h" }}">
+            <div class="platform-heading">
+              <h3>{{ .name }}</h3>
+              <span class="platform-state" data-platform-state data-state="pending" aria-live="polite">{{ i18n "status_checking" }}</span>
+            </div>
+            <p>{{ i18n .descriptionKey }}</p>
+            <div class="platform-meta"><span class="platform-uptime" data-platform-uptime></span>{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ i18n "visit_platform" }} -&gt;</a>{{ end }}</div>
+          </article>
+        {{ else }}
+          <p class="panel service-empty"><span class="prompt">&gt;</span> {{ i18n "platforms_empty" }}</p>
+        {{ end }}
+      </div>
+    </section>
+
+    <section class="service-section" aria-labelledby="consulting-title">
+      <div class="section-heading"><h2 id="consulting-title">{{ i18n "consulting_heading" }}</h2></div>
+      <p class="service-intro">{{ i18n "consulting_intro" }}</p>
+      <div class="service-grid consulting-grid">
+        {{ range .Site.Params.consulting }}
+          <article class="panel service-card">
+            <h3>{{ i18n (printf "consulting_%s_title" .key) }}</h3>
+            <p>{{ i18n (printf "consulting_%s_description" .key) }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  </div>
+{{ end }}

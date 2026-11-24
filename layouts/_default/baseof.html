@@ -40,6 +40,7 @@
         <nav class="site-nav" aria-label="{{ i18n "navigation" }}">
           <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ i18n "home" | lower }}</a>
           <a href="{{ "posts/" | relLangURL }}"{{ if eq .Section "posts" }} aria-current="page"{{ end }}>{{ i18n "posts" | lower }}</a>
+          <a href="{{ "services/" | relLangURL }}"{{ if eq .Section "services" }} aria-current="page"{{ end }}>{{ i18n "services" | lower }}</a>
         </nav>
         <nav class="language-switch" aria-label="{{ i18n "language" }}">
           {{ range .AllTranslations }}

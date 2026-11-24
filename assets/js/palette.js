@@ -3,6 +3,7 @@ const paletteWidget = document.querySelector(".palette-widget");
 const paletteToggle = document.querySelector(".palette-toggle");
 const windowStatus = document.querySelector(".window-status");
 const statusText = document.querySelector(".status-text");
+const servicesPage = document.querySelector("[data-services-page]");
 const numberReveal = document.querySelector(".number-reveal");
 const digitCloud = document.querySelector(".digit-cloud");
 const digitContext = digitCloud.getContext("2d");
@@ -124,6 +125,67 @@ async function animateSystemStatus() {
 }
 
 animateSystemStatus();
+
+async function updatePlatformStatuses() {
+  if (!servicesPage) return;
+
+  const cards = [...servicesPage.querySelectorAll("[data-platform-card]")];
+  if (!cards.length) return;
+
+  const statusLabels = servicesPage.dataset;
+  const setStatus = (card, status, labelKey) => {
+    const state = card.querySelector("[data-platform-state]");
+    state.dataset.state = status;
+    const label = statusLabels[labelKey];
+    if (state.textContent !== label) state.textContent = label;
+  };
+
+  if (!servicesPage.dataset.kumaUrl) {
+    cards.forEach((card) => setStatus(card, "unavailable", "statusNotConfigured"));
+    return;
+  }
+
+  let timeout;
+  try {
+    const root = servicesPage.dataset.kumaUrl.replace(/\/+$/, "");
+    const slug = encodeURIComponent(servicesPage.dataset.kumaSlug || "default");
+    const controller = new AbortController();
+    timeout = window.setTimeout(() => controller.abort(), 8000);
+    const [pageResponse, heartbeatResponse] = await Promise.all([
+      fetch(`${root}/api/status-page/${slug}`, { signal: controller.signal, credentials: "omit", cache: "no-store" }),
+      fetch(`${root}/api/status-page/heartbeat/${slug}`, { signal: controller.signal, credentials: "omit", cache: "no-store" }),
+    ]);
+    window.clearTimeout(timeout);
+    if (!pageResponse.ok || !heartbeatResponse.ok) throw new Error("Public status data unavailable");
+
+    const [pageData, heartbeatData] = await Promise.all([pageResponse.json(), heartbeatResponse.json()]);
+    const monitors = (pageData.publicGroupList || []).flatMap((group) => group.monitorList || []);
+    for (const card of cards) {
+      const monitor = monitors.find((item) => item.name?.toLowerCase() === card.dataset.monitor.toLowerCase());
+      const uptime = card.querySelector("[data-platform-uptime]");
+      if (!monitor) {
+        setStatus(card, "unavailable", "statusUnavailable");
+        continue;
+      }
+
+      const beats = heartbeatData.heartbeatList?.[monitor.id] || [];
+      const latest = beats.at(-1);
+      const status = latest?.status === 1 ? "up" : latest?.status === 0 ? "down" : latest?.status === 3 ? "maintenance" : "pending";
+      setStatus(card, status, `status${status[0].toUpperCase()}${status.slice(1)}`);
+      const uptimeValue = heartbeatData.uptimeList?.[`${monitor.id}_24`];
+      uptime.textContent = Number.isFinite(uptimeValue) ? `${card.dataset.uptimeLabel}: ${(uptimeValue * 100).toFixed(2)}%` : "";
+    }
+  } catch (_) {
+    cards.forEach((card) => setStatus(card, "unavailable", "statusUnavailable"));
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+if (servicesPage) {
+  updatePlatformStatuses();
+  window.setInterval(updatePlatformStatuses, 60_000);
+}
 
 function resizeDigitCloud() {
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
