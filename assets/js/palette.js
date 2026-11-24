@@ -1,6 +1,8 @@
 const paletteButtons = document.querySelectorAll("[data-palette-choice]");
 const paletteWidget = document.querySelector(".palette-widget");
 const paletteToggle = document.querySelector(".palette-toggle");
+const windowStatus = document.querySelector(".window-status");
+const statusText = document.querySelector(".status-text");
 const numberReveal = document.querySelector(".number-reveal");
 const digitCloud = document.querySelector(".digit-cloud");
 const digitContext = digitCloud.getContext("2d");
@@ -81,6 +83,36 @@ document.addEventListener("keydown", (event) => {
 });
 
 setPalette(document.documentElement.dataset.theme || "green", false);
+
+async function typeStatusMessage(message, speed = 75) {
+  statusText.textContent = "";
+  for (const character of message) {
+    statusText.textContent += character;
+    await new Promise((resolve) => window.setTimeout(resolve, speed));
+  }
+}
+
+async function animateSystemStatus() {
+  const finalMessage = statusText.textContent;
+  const messages = ["BOOTING", "LOADING INTERFACE", "CHECK CONNECTIVITY", "SYNCING DATA", finalMessage];
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    windowStatus.classList.add("is-complete");
+    return;
+  }
+
+  for (const [index, message] of messages.entries()) {
+    await typeStatusMessage(message);
+    if (index < messages.length - 1) {
+      const pause = index === messages.length - 2 ? 1100 : 1300;
+      await new Promise((resolve) => window.setTimeout(resolve, pause));
+    }
+  }
+
+  windowStatus.classList.add("is-complete");
+}
+
+animateSystemStatus();
 
 function resizeDigitCloud() {
   const ratio = Math.min(window.devicePixelRatio || 1, 2);

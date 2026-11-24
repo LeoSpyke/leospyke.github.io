@@ -29,7 +29,7 @@
     <div class="window-top" aria-hidden="true">
       <div class="window-dots"><i></i><i></i><i></i></div>
       <span class="window-path">{{ .Site.BaseURL }}{{ strings.TrimPrefix "/" .RelPermalink }}</span>
-      <span class="window-status"><i class="status-dot"></i>{{ i18n "system_online" }}</span>
+      <span class="window-status"><i class="status-dot"></i><span class="status-text">{{ i18n "system_online" }}</span><span class="status-cursor" aria-hidden="true">_</span></span>
     </div>
     <header class="site-header">
       <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} - {{ i18n "home" }}">

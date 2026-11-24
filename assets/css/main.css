@@ -50,8 +50,8 @@
   --shadow: transparent;
 }
 
-:root[data-theme="mono"] body { background-blend-mode: normal; }
-:root[data-theme="mono"] .status-dot { animation: none; box-shadow: none; }
+:root[data-theme="mono"] body { background-image: none; background-blend-mode: normal; }
+:root[data-theme="mono"] .status-dot { animation-name: status-pulse-mono; box-shadow: none; }
 
 * { box-sizing: border-box; }
 
@@ -81,8 +81,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .window-path, .window-status { font-size: 12px; }
 .window-path { overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
 .window-status { display: inline-flex; align-items: center; gap: 7px; color: var(--accent); }
+.window-status:not(.is-complete) .status-dot { visibility: hidden; animation-play-state: paused; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 9px var(--accent); animation: status-pulse 1.35s ease-in-out infinite; }
 @keyframes status-pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 9px var(--accent); } 50% { opacity: .35; box-shadow: 0 0 2px var(--accent); } }
+@keyframes status-pulse-mono { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.status-cursor { margin-left: -7px; opacity: .7; animation: cursor-pulse 900ms ease-in-out infinite; }
+.window-status.is-complete .status-cursor { display: none; }
+@keyframes cursor-pulse { 0%, 100% { opacity: .7; } 50% { opacity: .18; } }
 .site-header { min-height: 76px; justify-content: space-between; gap: 20px; padding: 0 40px; border-bottom: 1px solid var(--line); }
 .header-tools { display: flex; align-items: center; gap: 22px; }
 .brand { gap: 12px; color: var(--text); font-weight: 700; }
