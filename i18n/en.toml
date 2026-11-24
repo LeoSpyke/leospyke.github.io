@@ -13,11 +13,11 @@ other = "Language"
 [navigation]
 other = "Main navigation"
 
-[profiles]
-other = "profiles"
-
 [rss_handle]
 other = "Follow new posts"
+
+[pinned]
+other = "Pinned"
 
 [home_kicker]
 other = "// HOME"

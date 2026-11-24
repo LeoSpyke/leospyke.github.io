@@ -3,10 +3,13 @@
   <h1>{{ .Title }}</h1>
   {{ with .Description }}<p class="intro">{{ . }}</p>{{ end }}
   <div class="post-list">
-    {{ range .Pages.ByDate.Reverse }}
+    {{ $pinned := sort (where .Pages "Params.pinned" true) "Params.pinWeight" "desc" }}
+    {{ $unpinned := sort (where .Pages "Params.pinned" "ne" true) "Date" "desc" }}
+    {{ range append $pinned $unpinned }}
       <article class="panel post-card">
         <div class="post-date">{{ .Date.Format "2006-01-02" }}</div>
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ if .Params.pinned }}<span class="pin-badge">&#9733; {{ i18n "pinned" }}</span>{{ end }}
         {{ with .Description }}<p>{{ . }}</p>{{ else }}<p>{{ .Summary | plainify | truncate 180 }}</p>{{ end }}
         <a class="text-link" href="{{ .RelPermalink }}">{{ i18n "read_post" }}</a>
       </article>

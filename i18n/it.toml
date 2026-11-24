@@ -13,9 +13,6 @@ other = "Lingua"
 [navigation]
 other = "Navigazione principale"
 
-[profiles]
-other = "profili"
-
 [home_kicker]
 other = "// HOME"
 
@@ -78,3 +75,6 @@ other = "costruito con curiosità_"
 
 [rss_handle]
 other = "Segui i nuovi articoli"
+
+[pinned]
+other = "In evidenza"

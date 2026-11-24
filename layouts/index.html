@@ -1,11 +1,8 @@
 {{ define "main" }}
-  <div class="eyebrow">{{ i18n "home_kicker" }}</div>
-
   <div class="content-grid">
     <section class="panel social-panel" id="social" aria-labelledby="social-title">
       <div class="section-heading">
         <h2 id="social-title">{{ i18n "links_heading" }}</h2>
-        <span>{{ len .Site.Params.social }} {{ i18n "profiles" }}</span>
       </div>
       <div class="social-list">
         {{ range .Site.Params.social }}
@@ -20,7 +17,6 @@
     <section class="panel simplex-panel" aria-labelledby="simplex-title">
       <div class="section-heading">
         <h2 id="simplex-title">// SIMPLEX</h2>
-        <span>{{ i18n "server" }}</span>
       </div>
       {{ with .Site.Params.simplexQR }}
         <a class="qr-link" href="{{ . | relURL }}" aria-label="Apri il QR code SimpleX">
@@ -40,10 +36,14 @@
       <a class="text-link" href="{{ "posts/" | relLangURL }}">{{ i18n "all_posts" }}</a>
     </div>
     {{ $posts := where .Site.RegularPages "Section" "posts" }}
-    {{ range first 3 ($posts.ByDate.Reverse) }}
+    {{ $pinned := sort (where $posts "Params.pinned" true) "Params.pinWeight" "desc" }}
+    {{ $unpinned := sort (where $posts "Params.pinned" "ne" true) "Date" "desc" }}
+    {{ $featured := first 3 (append $pinned $unpinned) }}
+    {{ range $featured }}
       <a class="panel post-row" href="{{ .RelPermalink }}">
         <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
         <span class="post-title">{{ .Title }}</span>
+        {{ if .Params.pinned }}<span class="pin-mark" aria-label="{{ i18n "pinned" }}" title="{{ i18n "pinned" }}">&#9733;</span>{{ end }}
         <span class="posts-arrow" aria-hidden="true">-&gt;</span>
       </a>
     {{ else }}

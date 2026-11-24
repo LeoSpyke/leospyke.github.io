@@ -112,12 +112,14 @@ h1 span { color: var(--accent); }
 .post-date { flex: 0 0 auto; color: var(--muted); font-size: 12px; }
 .post-title { flex: 1; font-size: 14px; }
 .posts-arrow { color: var(--accent); font-size: 16px; }
+.pin-mark { color: var(--accent); font-size: 13px; }
 .empty-state { margin: 12px 0 0; padding: 16px; border: 1px dashed var(--line); color: var(--muted); font-size: 14px; }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .footer-tools { display: flex; align-items: center; gap: 10px; }
 .curiosity { color: var(--accent); }
 .post-list { display: grid; gap: 12px; }
 .post-card { padding: 20px; transition: border-color 150ms ease; }
+.pin-badge { display: inline-block; margin-bottom: 9px; color: var(--accent); font-size: 11px; }
 .post-card h2 { margin: 10px 0 8px; font-size: 20px; font-weight: 600; }
 .post-card h2 a:hover { color: var(--accent); }
 .post-card p { margin-bottom: 14px; color: var(--muted); font-size: 14px; line-height: 1.8; }

@@ -99,8 +99,8 @@ function drawDigits(timestamp) {
 
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const columns = Math.ceil(width / 14);
-  const rows = Math.ceil(height / 15);
+  const columns = Math.ceil(width / 20);
+  const rows = Math.ceil(height / 22);
   const cellWidth = width / columns;
   const cellHeight = height / rows;
   const radius = 90;
@@ -108,7 +108,7 @@ function drawDigits(timestamp) {
 
   digitContext.clearRect(0, 0, width, height);
   digitContext.fillStyle = paletteAccents[document.documentElement.dataset.theme] || paletteAccents.green;
-  digitContext.font = '500 10px "Bodoni Moda", "Times New Roman", serif';
+  digitContext.font = 'normal 17px "DSEG7-Classic-MINI", monospace';
   digitContext.textAlign = "center";
   digitContext.textBaseline = "middle";
 
@@ -134,8 +134,7 @@ function drawDigits(timestamp) {
 
 function updateLens(event) {
   const element = event.target instanceof Element ? event.target : event.target.parentElement;
-  const interactiveTarget = element && element.closest("a, button, input, select, textarea, .panel, .site-header, .site-footer, .window-top, h1, h2, p, .eyebrow");
-  const backgroundTarget = event.pointerType !== "touch" && !interactiveTarget;
+  const backgroundTarget = event.pointerType !== "touch" && (!element || !element.closest(".site-shell"));
 
   if (!backgroundTarget) {
     pointerInside = false;
