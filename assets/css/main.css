@@ -74,13 +74,13 @@ a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .site-shell { width: min(100%, 1060px); margin: 0 auto; overflow: hidden; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); box-shadow: 0 22px 80px var(--shadow); }
 .window-top, .window-dots, .site-header, .brand, .site-nav, .section-heading, .social-link { display: flex; align-items: center; }
-.window-top { height: 43px; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.window-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); height: 43px; align-items: center; padding: 0 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
 .window-dots { gap: 6px; }
 .window-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
 .window-dots i:first-child { background: var(--accent); }
 .window-path, .window-status { font-size: 12px; }
-.window-path { overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
-.window-status { display: inline-flex; align-items: center; gap: 7px; color: var(--accent); }
+.window-path { min-width: 0; overflow: hidden; color: var(--muted); text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.window-status { display: inline-flex; align-items: center; justify-self: end; gap: 7px; color: var(--accent); }
 .window-status:not(.is-complete) .status-dot { visibility: hidden; animation-play-state: paused; }
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 9px var(--accent); animation: status-pulse 1.35s ease-in-out infinite; }
 @keyframes status-pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 9px var(--accent); } 50% { opacity: .35; box-shadow: 0 0 2px var(--accent); } }

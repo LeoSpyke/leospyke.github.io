@@ -96,6 +96,17 @@ async function animateSystemStatus() {
   const finalMessage = statusText.textContent;
   const messages = ["BOOTING", "LOADING INTERFACE", "CHECK CONNECTIVITY", "SYNCING DATA", finalMessage];
 
+  try {
+    if (localStorage.getItem("leospyke-status-seen") === "true") {
+      windowStatus.classList.add("is-complete");
+      return;
+    }
+    localStorage.setItem("leospyke-status-seen", "true");
+  } catch (_) {
+    windowStatus.classList.add("is-complete");
+    return;
+  }
+
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     windowStatus.classList.add("is-complete");
     return;
