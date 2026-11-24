@@ -5,8 +5,8 @@ defaultContentLanguageInSubdir = false
 disableKinds = ["taxonomy", "term"]
 
 [languages.en]
-languageCode = "en-us"
-languageName = "English"
+locale = "en-US"
+label = "English"
 title = "LeoSpyke's home"
 weight = 1
 
@@ -15,8 +15,8 @@ tagline = "A personal space for notes, projects, and connections."
 simplexLabel = "QR code to join the SimpleX server"
 
 [languages.it]
-languageCode = "it-it"
-languageName = "Italiano"
+locale = "it-IT"
+label = "Italiano"
 title = "Lo spazio di LeoSpyke"
 weight = 2
 

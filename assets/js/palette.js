@@ -3,9 +3,23 @@ const paletteWidget = document.querySelector(".palette-widget");
 const paletteToggle = document.querySelector(".palette-toggle");
 const numberReveal = document.querySelector(".number-reveal");
 const digitCloud = document.querySelector(".digit-cloud");
+const digitContext = digitCloud.getContext("2d");
 let animationTimer;
-let revealTimer;
-let digitTimer;
+let pointerInside = false;
+let frameRequest = null;
+let lastDigitUpdate = 0;
+let lastX = -200;
+let lastY = -200;
+const numberCount = 1200;
+const paletteAccents = {
+  green: "#b7f28b",
+  amber: "#f2b84b",
+  cyan: "#6de4e8",
+};
+const numbers = Array.from({ length: numberCount }, () => ({
+  value: Math.floor(Math.random() * 10),
+  alpha: 0.13 + Math.random() * 0.16,
+}));
 
 function animatePaletteToggle() {
   paletteToggle.classList.remove("is-changing");
@@ -33,6 +47,8 @@ function setPalette(palette, persist = true) {
       localStorage.setItem("leospyke-palette", palette);
     } catch (_) {}
   }
+
+  if (pointerInside) scheduleDigitFrame();
 }
 
 paletteButtons.forEach((button) => {
@@ -65,55 +81,99 @@ document.addEventListener("keydown", (event) => {
 
 setPalette(document.documentElement.dataset.theme || "green", false);
 
-function closeNumberReveal() {
-  if (numberReveal.hidden) return;
-  numberReveal.classList.remove("is-open");
-  numberReveal.classList.add("is-closing");
-  window.clearTimeout(revealTimer);
-  window.clearInterval(digitTimer);
-  revealTimer = window.setTimeout(() => {
-    numberReveal.hidden = true;
-    numberReveal.classList.remove("is-closing");
-  }, 850);
+function resizeDigitCloud() {
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  digitCloud.width = Math.round(window.innerWidth * ratio);
+  digitCloud.height = Math.round(window.innerHeight * ratio);
+  digitContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+  scheduleDigitFrame();
 }
 
-document.addEventListener("click", (event) => {
-  if (event.target !== document.body && event.target !== document.documentElement) return;
+function scheduleDigitFrame() {
+  if (frameRequest === null) frameRequest = window.requestAnimationFrame(drawDigits);
+}
 
-  if (!numberReveal.hidden) {
-    closeNumberReveal();
+function drawDigits(timestamp) {
+  frameRequest = null;
+  if (!pointerInside) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const columns = Math.ceil(width / 14);
+  const rows = Math.ceil(height / 15);
+  const cellWidth = width / columns;
+  const cellHeight = height / rows;
+  const radius = 90;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  digitContext.clearRect(0, 0, width, height);
+  digitContext.fillStyle = paletteAccents[document.documentElement.dataset.theme] || paletteAccents.green;
+  digitContext.font = '500 10px "Bodoni Moda", "Times New Roman", serif';
+  digitContext.textAlign = "center";
+  digitContext.textBaseline = "middle";
+
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      const x = (column + 0.5) * cellWidth;
+      const y = (row + 0.5) * cellHeight;
+      const distance = Math.hypot(x - lastX, y - lastY);
+      if (distance > radius) continue;
+
+      const distanceFade = 1 - distance / radius;
+      const index = (row * columns + column) % numberCount;
+      if (!reducedMotion && timestamp - lastDigitUpdate > 100 && Math.random() > 0.9) numbers[index].value = Math.floor(Math.random() * 10);
+      digitContext.globalAlpha = numbers[index].alpha * distanceFade * distanceFade;
+      digitContext.fillText(String(numbers[index].value), x, y);
+    }
+  }
+
+  digitContext.globalAlpha = 1;
+  if (timestamp - lastDigitUpdate > 100) lastDigitUpdate = timestamp;
+  if (!reducedMotion) frameRequest = window.requestAnimationFrame(drawDigits);
+}
+
+function updateLens(event) {
+  const element = event.target instanceof Element ? event.target : event.target.parentElement;
+  const interactiveTarget = element && element.closest("a, button, input, select, textarea, .panel, .site-header, .site-footer, .window-top, h1, h2, p, .eyebrow");
+  const backgroundTarget = event.pointerType !== "touch" && !interactiveTarget;
+
+  if (!backgroundTarget) {
+    pointerInside = false;
+    numberReveal.classList.remove("is-active");
+    window.cancelAnimationFrame(frameRequest);
+    frameRequest = null;
     return;
   }
 
-  const x = (event.clientX / window.innerWidth) * 100;
-  const y = (event.clientY / window.innerHeight) * 100;
-  numberReveal.style.setProperty("--reveal-x", `${x}%`);
-  numberReveal.style.setProperty("--reveal-y", `${y}%`);
-  digitCloud.replaceChildren();
+  pointerInside = true;
+  lastX = event.clientX;
+  lastY = event.clientY;
+  numberReveal.style.setProperty("--lens-x", `${lastX}px`);
+  numberReveal.style.setProperty("--lens-y", `${lastY}px`);
+  numberReveal.classList.add("is-active");
+  scheduleDigitFrame();
+}
 
-  for (let index = 0; index < 84; index += 1) {
-    const digit = document.createElement("span");
-    digit.textContent = String(Math.floor(Math.random() * 10));
-    digit.style.setProperty("--drift", `${3 + Math.random() * 6}s`);
-    digit.style.animationDelay = `${Math.random() * -6}s`;
-    digitCloud.append(digit);
-  }
-
-  numberReveal.hidden = false;
-  numberReveal.classList.remove("is-closing", "is-open");
-  void numberReveal.offsetWidth;
-  numberReveal.classList.add("is-open");
-  digitTimer = window.setInterval(() => {
-    const digits = digitCloud.children;
-    for (let change = 0; change < 4; change += 1) {
-      const digit = digits[Math.floor(Math.random() * digits.length)];
-      digit.textContent = String(Math.floor(Math.random() * 10));
-    }
-  }, 120);
-  window.clearTimeout(revealTimer);
-  revealTimer = window.setTimeout(closeNumberReveal, 6500);
+resizeDigitCloud();
+document.addEventListener("pointermove", updateLens, { passive: true });
+document.addEventListener("pointerleave", () => {
+  pointerInside = false;
+  numberReveal.classList.remove("is-active");
+  window.cancelAnimationFrame(frameRequest);
+  frameRequest = null;
 });
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeNumberReveal();
+document.addEventListener("pointerout", (event) => {
+  if (event.relatedTarget === null || (event.target instanceof Element && event.target.matches("body, html"))) {
+    pointerInside = false;
+    numberReveal.classList.remove("is-active");
+    window.cancelAnimationFrame(frameRequest);
+    frameRequest = null;
+  }
+});
+window.addEventListener("resize", resizeDigitCloud);
+window.addEventListener("blur", () => {
+  pointerInside = false;
+  numberReveal.classList.remove("is-active");
+  window.cancelAnimationFrame(frameRequest);
+  frameRequest = null;
 });
