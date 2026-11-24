@@ -19,7 +19,7 @@
     (() => {
       try {
         const palette = localStorage.getItem("leospyke-palette");
-        if (["green", "amber", "cyan"].includes(palette)) document.documentElement.dataset.theme = palette;
+        if (["green", "amber", "cyan", "mono"].includes(palette)) document.documentElement.dataset.theme = palette;
       } catch (_) {}
     })();
   </script>
@@ -64,6 +64,7 @@
             <button class="palette-button" type="button" data-palette-choice="green" aria-pressed="true"><span class="swatch" style="--swatch:#b7f28b"></span>{{ i18n "green" }}</button>
             <button class="palette-button" type="button" data-palette-choice="amber" aria-pressed="false"><span class="swatch" style="--swatch:#f2b84b"></span>{{ i18n "amber" }}</button>
             <button class="palette-button" type="button" data-palette-choice="cyan" aria-pressed="false"><span class="swatch" style="--swatch:#6de4e8"></span>{{ i18n "cyan" }}</button>
+            <button class="palette-button" type="button" data-palette-choice="mono" aria-pressed="false"><span class="swatch" style="--swatch:#fff"></span>{{ i18n "mono" }}</button>
           </div>
         </div>
       </div>

@@ -67,6 +67,9 @@ other = "Ambra"
 [cyan]
 other = "Ciano"
 
+[mono]
+other = "Bianco/nero"
+
 [system_online]
 other = "SISTEMA ONLINE"
 

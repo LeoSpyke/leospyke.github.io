@@ -15,6 +15,7 @@ const paletteAccents = {
   green: "#b7f28b",
   amber: "#f2b84b",
   cyan: "#6de4e8",
+  mono: "#fff",
 };
 const numbers = Array.from({ length: numberCount }, () => ({
   value: Math.floor(Math.random() * 10),
@@ -107,7 +108,8 @@ function drawDigits(timestamp) {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   digitContext.clearRect(0, 0, width, height);
-  digitContext.fillStyle = paletteAccents[document.documentElement.dataset.theme] || paletteAccents.green;
+  const theme = document.documentElement.dataset.theme;
+  digitContext.fillStyle = paletteAccents[theme] || paletteAccents.green;
   digitContext.font = 'normal 17px "DSEG7-Classic-MINI", monospace';
   digitContext.textAlign = "center";
   digitContext.textBaseline = "middle";
@@ -122,7 +124,7 @@ function drawDigits(timestamp) {
       const distanceFade = 1 - distance / radius;
       const index = (row * columns + column) % numberCount;
       if (!reducedMotion && timestamp - lastDigitUpdate > 100 && Math.random() > 0.9) numbers[index].value = Math.floor(Math.random() * 10);
-      digitContext.globalAlpha = numbers[index].alpha * distanceFade * distanceFade;
+      digitContext.globalAlpha = theme === "mono" ? 1 : numbers[index].alpha * distanceFade * distanceFade;
       digitContext.fillText(String(numbers[index].value), x, y);
     }
   }
